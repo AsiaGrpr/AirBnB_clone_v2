@@ -12,7 +12,7 @@ def hello_HBNB():
 
 @app.route("/hbnb", strict_slashes=False)
 def write_HBNB():
-    return "HBNB!"
+    return "HBNB"
 
 
 if __name__ == '__main__':
