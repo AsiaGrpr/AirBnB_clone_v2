@@ -36,5 +36,11 @@ def Python_text(text):
     return "Python {}".format(text)
 
 
+@app.route("/number/<int:number>", strict_slashes=False)
+def number_route(number):
+    """print number if is integer"""
+    return "{} is a number".format(number)
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
