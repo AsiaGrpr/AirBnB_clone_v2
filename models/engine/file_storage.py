@@ -13,11 +13,11 @@ class FileStorage:
         if cls is None:
             return FileStorage.__objects
         else:
-            newdict = {}
-            for key, value in FileStorage.__objects.items():
-                if isinstance(value, cls):
-                    newdict[key] = value
-            return newdict
+            class_dict = {}
+            for k, v in FileStorage.__objects.items():
+                if cls.__name__ == k.split(".")[0]:
+                    class_dict[k] = v
+            return class_dict
 
     def new(self, obj):
         """Adds new object to storage dictionary"""
@@ -57,12 +57,13 @@ class FileStorage:
             pass
 
     def delete(self, obj=None):
-        """ to delete an object of a dictionnary """
+        """ delete an obj from __objects """
         if obj is None:
             return
         else:
-            key = "{}.{}".format(type(obj).__name__, obj.id)
-            del(FileStorage.__objects[key])
+            key = f'{obj.__class__.__name__}.{obj.id}'
+            del (FileStorage.__objects[key])
+            self.save()
 
     def close(self):
         """ deserializes the JSON file to objects """
