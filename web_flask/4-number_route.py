@@ -38,7 +38,8 @@ def Python_text(text):
 
 @app.route("/number/<int:number>", strict_slashes=False)
 def number_route(number):
-    """print number if is integer"""
+    """print number if it's an integer"""
+
     return "{} is a number".format(number)
 
 
